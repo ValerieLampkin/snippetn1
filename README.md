@@ -1,7 +1,7 @@
 # snippetn1
 Snippet n1 for default node js
 
-# Sample Folder Structure
+## Sample Folder Structure
 * Category
   * SubCategory
   * lib
