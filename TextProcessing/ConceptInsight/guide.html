@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Loading Nodered Documentation</title>
+    <link rel="stylesheet" type="text/css" href="/js/themes/easyui.css">
+    <link rel="stylesheet" type="text/css" href="/js/themes/icon.css">
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/js/themes/ribbon.css">
+    <link rel="stylesheet" type="text/css" href="/js/themes/ribbon-icon.css">
+    <script type="text/javascript" src="/js/jquery.ribbon.js"></script>
+    <script type="text/javascript" src="/js/index.js"></script>
+</head>
+
+<body>
+    <div class="easyui-accordion">
+        <div title="About" data-options="iconCls:'icon-ok',collapsed:false" style="overflow:auto;padding:10px;">
+            <h3 style="color:#0099FF;">About</h3>
+            <p>
+              Understand which documents are related or extract high-level concepts mentioned in text.Concept Insights offers a set of services that enable you to do content recommendation and exploration. For instance, using Concept Insights you can provide a document, understand the high level concepts mentioned in it and recommend related documents. In another example, you can go beyond simple keyword searches to discover content that mentions concepts that are relevant to a query.
+</p>
+        </div>
+        <div title="Video and Documentation" data-options="iconCls:'icon-help'" style="padding:10px;">
+            <h3 style="color:#0099FF;">Video</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mPwVnowX9cU" frameborder="0" allowfullscreen></iframe>
+
+            <h3 style="color:#0099FF;">Documentation</h3>
+            <p>For documentation visit <a target="_blank" href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/doc/concept-insights/">Concept Insights API Documentation</a>
+            </p>
+        </div>
+        <div title="Code Walkthrough" data-options="iconCls:'icon-help',collapsed:false" style="padding:10px;">
+            <p>API Key need to be obtained by creating Concept Insights Service at :<a target="_blank" href="https://console.ng.bluemix.net/catalog/services/concept-insights/">Concept Insights Service</a></p>
+            <h3 style="color:#0099FF;">Code Walkthrough</h3>
+            <ol>
+                <li>When you run the code the API Key and password is expected to be set for the Concept Insight API Service to be used.</li>
+                <li>The text to be anlaysed also set in the main method</li>
+  <li>In the process method , the attribute like annotations are set and result is returned </li>                    
+</ol>
+
+
+
+        </div>
+    </div>
+</body>
+
+</html>

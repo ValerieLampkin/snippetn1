@@ -1,0 +1,15 @@
+{
+  "name": "AlchemyConcepts",
+  "version": "0.0.1",
+
+  "dependencies": {
+	"express": "4.13.4",
+	"body-parser": "1.15.0",
+    "http": "*",
+    "path": "*",
+    "dynamic-routes": "*",
+    "forms": "*",
+
+    "alchemy-api": "*"
+  }
+}
