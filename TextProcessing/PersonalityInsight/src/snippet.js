@@ -7,33 +7,6 @@ var params = {
 		"url" : "https://simple.wikipedia.org/wiki/Barack_Obama"
 };
 
-var watson = require('watson-developer-cloud');
-var AlchemyAPI = require('alchemy-api');
-var alchemy = new AlchemyAPI(params.api_key);
-alchemy.text(params.url, {}, function(err, response) {
-	if (err) {
-		console.log('error: ' + err);
-		return;
-	}
-
-	var personality_insights = watson.personality_insights({
-		username: params.username,
-		password: params.password,
-		version: 'v2'
-	});
-
-	personality_insights.profile({
-		text: response.text,
-		language: 'en' },
-		function (err, response) {
-			if (err)
-				console.log('error:', err);
-			else
-				console.log(JSON.stringify(response, null, 2));
-		});
-
-});
-
 ////////
 //Main function
 //Output will be reflected via console.log function
