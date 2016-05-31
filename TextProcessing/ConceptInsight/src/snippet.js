@@ -16,7 +16,7 @@ function process(reqparams, callback) {
 	var out = {};
 	alchemy.sentiment(reqparams.url, {}, function(err, response) {
 		if (err) {
-			console.log('error:', err);
+			console.log('error: ' + err);
 			if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
 			return;
 		}
@@ -24,7 +24,7 @@ function process(reqparams, callback) {
 
 		alchemy.entities(reqparams.url, {}, function(err, response) {
 			if (err) {
-				console.log('error:', err);
+				console.log('error: ' + err);
 				if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
 				return;
 			}
@@ -32,7 +32,7 @@ function process(reqparams, callback) {
 
 			alchemy.relations(reqparams.url, {}, function(err, response) {
 				if (err) {
-					console.log('error:', err);
+					console.log('error: ' + err);
 					if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
 					return;
 				}
