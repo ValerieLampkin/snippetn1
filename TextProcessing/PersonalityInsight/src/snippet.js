@@ -14,7 +14,7 @@ function process(reqparams, callback) {
 	var AlchemyAPI = require('alchemy-api');
 
 	var alchemy = new AlchemyAPI(reqparams.api_key);
-
+	var watson = require('watson-developer-cloud');
 	// Personality Insights using Watson Lib
 	var out = {};
 	alchemy.text(reqparams.url, {}, function(err, response) {
