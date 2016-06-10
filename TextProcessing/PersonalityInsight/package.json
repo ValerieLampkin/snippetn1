@@ -10,6 +10,8 @@
     "dynamic-routes": "*",
     "forms": "*",
 
+	"cf-deployment-tracker-client": "*"
+
     "alchemy-api": "*",
     "watson-developer-cloud" : "*"    
   }
