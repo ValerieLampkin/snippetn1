@@ -1,20 +1,20 @@
 //Predefined parameters
 //which may contain api_key, username, password 
-var params = {
+var parameters = {
 		"api_key" : "913f155354acfc4810935b58249e5edefa63f9ba",
 		"url" : "https://simple.wikipedia.org/wiki/Barack_Obama"
 };
 
 //Main function
 //Output will be reflected via console.log function
-function process(reqparams, callback) {
+function process(req_parameters, callback) {
 	var AlchemyAPI = require('alchemy-api');
 
-	var alchemy = new AlchemyAPI(reqparams.api_key);
+	var alchemy = new AlchemyAPI(req_parameters.api_key);
 
 	// Sentiment , Entities, Relations using Alchemy Lib
 	var out = {};
-	alchemy.sentiment(reqparams.url, {}, function(err, response) {
+	alchemy.sentiment(req_parameters.url, {}, function(err, response) {
 		if (err) {
 			console.log('error: ' + err);
 			if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
@@ -22,7 +22,7 @@ function process(reqparams, callback) {
 		}
 		out.sentiment = response.docSentiment;
 
-		alchemy.entities(reqparams.url, {}, function(err, response) {
+		alchemy.entities(req_parameters.url, {}, function(err, response) {
 			if (err) {
 				console.log('error: ' + err);
 				if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
@@ -30,7 +30,7 @@ function process(reqparams, callback) {
 			}
 			out.entities = response.entities;
 
-			alchemy.relations(reqparams.url, {}, function(err, response) {
+			alchemy.relations(req_parameters.url, {}, function(err, response) {
 				if (err) {
 					console.log('error: ' + err);
 					if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
@@ -50,7 +50,7 @@ function process(reqparams, callback) {
 //Allows Execution of this process
 //will run if only called directly
 if (require.main === module) {
-	process(params,null);
+	process(parameters,null);
 } else {
 
 //	name of the unit for logging and servlet path also
@@ -66,7 +66,7 @@ if (require.main === module) {
 			init: function (app) {
 				// something to do initially
 			},
-			GET:  function(req, res) {superglue.GET(req,res,params,unitpath)},
+			GET:  function(req, res) {superglue.GET(req,res,parameters,unitpath)},
 			POST: function(req, res) {superglue.POST(req,res,process)}
 	}
 }

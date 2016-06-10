@@ -1,6 +1,6 @@
 //Predefined parameters
 //which may contain api_key, username, password 
-var params = {
+var parameters = {
 		"username" : "e99c66c3-7ffd-4001-8bff-d57d218d7461",
 		"password" : "dcb7G7Z3MrWE",
 		"api_key" : "913f155354acfc4810935b58249e5edefa63f9ba",
@@ -10,14 +10,14 @@ var params = {
 ////////
 //Main function
 //Output will be reflected via console.log function
-function process(reqparams, callback) {
+function process(req_parameters, callback) {
 	var AlchemyAPI = require('alchemy-api');
 
-	var alchemy = new AlchemyAPI(reqparams.api_key);
+	var alchemy = new AlchemyAPI(req_parameters.api_key);
 	var watson = require('watson-developer-cloud');
 	// Personality Insights using Watson Lib
 	var out = {};
-	alchemy.text(reqparams.url, {}, function(err, response) {
+	alchemy.text(req_parameters.url, {}, function(err, response) {
 		if (err) {
 			console.log('error: ' + err);
 			if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
@@ -25,8 +25,8 @@ function process(reqparams, callback) {
 		}
 		
 		var personality_insights = watson.personality_insights({
-			username: reqparams.username,
-			password: reqparams.password,
+			username: req_parameters.username,
+			password: req_parameters.password,
 			version: 'v2'
 		});
 
@@ -48,7 +48,7 @@ function process(reqparams, callback) {
 //Allows Execution of this process
 //will run if only called directly
 if (require.main === module) {
-	process(params,null);
+	process(parameters,null);
 } else {
 
 //	name of the unit for logging and servlet path also
@@ -64,7 +64,7 @@ if (require.main === module) {
 			init: function (app) {
 				// something to do initially
 			},
-			GET:  function(req, res) {superglue.GET(req,res,params,unitpath)},
+			GET:  function(req, res) {superglue.GET(req,res,parameters,unitpath)},
 			POST: function(req, res) {superglue.POST(req,res,process)}
 	}
 }
