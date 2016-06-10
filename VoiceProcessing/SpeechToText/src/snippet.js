@@ -11,6 +11,7 @@ var parameters = {
 //Output will be reflected via console.log function
 function process(req_parameters, callback) {
 	var watson = require('watson-developer-cloud');
+	var fs = require('fs');
 
 	var speech_to_text = watson.speech_to_text({
 		username: req_parameters.username,
