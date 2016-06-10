@@ -1,0 +1,7 @@
+applications:
+- name: WatsonSpeechToText
+  memory: 256M
+  disk_quota: 512M
+  host: WatsonSpeechToText-${random-word}
+  command: node app.js
+  buildpack: sdk-for-nodejs
