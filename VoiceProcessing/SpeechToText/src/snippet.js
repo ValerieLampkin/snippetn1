@@ -3,8 +3,8 @@
 var parameters = {
 		"username" : "90260bbe-07af-47ee-abe3-bb6199e4ed1d",
 		"password" : "2aIQdfh6KFCx",
-		"wav_file" : '/home/vcap/app/public/STTInput.wav',
-		"output_file" : '/home/vcap/app/public/output.txt' // 'audio/l16; rate=44100'
+		"wav_file" : '/home/vcap/app/public/resource/STTInput.wav',
+		"output_file" : '/home/vcap/app/public/resource/output.txt' // 'audio/l16; rate=44100'
 };
 
 //Main function
@@ -19,12 +19,12 @@ function process(req_parameters, callback) {
 		version: 'v1'
 	});
 	
-	var audio = {
+	var input = {
 			audio: fs.createReadStream(req_parameters.wav_file),
 			content_type: 'audio/l16; rate=44100'
 	};
 
-	speech_to_text.recognize(audio, function(err, response) {
+	speech_to_text.recognize(input, function(err, response) {
 		if (err) {
 			console.log('error:', err);
 			if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
@@ -34,12 +34,11 @@ function process(req_parameters, callback) {
 		}
 	});
 
-	//streaming working
 	fs.createReadStream(req_parameters.wav_file)
-	.pipe(speech_to_text.createRecognizeStream({ content_type: audio.content_type }))
+	.pipe(speech_to_text.createRecognizeStream({ content_type: input.content_type }))
 	.pipe(fs.createWriteStream(req_parameters.output_file));
 
-	//Access Output at  <hostname>/output.txt  or /output.wav
+	//Access Output at <hostname>/resource/output.txt
 }
 
 //Allows Execution of this process
