@@ -1,0 +1,7 @@
+applications:
+- name: WatsonAlchemyVision
+  memory: 256M
+  disk_quota: 512M
+  host: WatsonAlchemyVision-${random-word}
+  command: node app.js
+  buildpack: sdk-for-nodejs
