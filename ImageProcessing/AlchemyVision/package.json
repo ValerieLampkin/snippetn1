@@ -10,7 +10,7 @@
     "dynamic-routes": "*",
     "forms": "*",
 
-	"cf-deployment-tracker-client": "*"
+	"cf-deployment-tracker-client": "*",
 
     "watson-developer-cloud": "*"
   }
