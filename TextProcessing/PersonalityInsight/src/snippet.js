@@ -1,48 +1,46 @@
 //Predefined parameters
 //which may contain api_key, username, password 
 var parameters = {
-		"username" : "e99c66c3-7ffd-4001-8bff-d57d218d7461",
-		"password" : "dcb7G7Z3MrWE",
-		"api_key" : "913f155354acfc4810935b58249e5edefa63f9ba",
-		"url" : "https://simple.wikipedia.org/wiki/Barack_Obama"
+		"username" : "",
+		"password" : "",
+		"text" : "Call me Ishmael. Some years ago-never mind how long "
+		      + "precisely-having little or no money in my purse, and nothing "
+		      + "particular to interest me on shore, I thought I would sail about "
+		      + "a little and see the watery part of the world. It is a way "
+		      + "I have of driving off the spleen and regulating the circulation. "
+		      + "Whenever I find myself growing grim about the mouth; whenever it "
+		      + "is a damp, drizzly November in my soul; whenever I find myself "
+		      + "involuntarily pausing before coffin warehouses, and bringing up "
+		      + "the rear of every funeral I meet; and especially whenever my "
+		      + "hypos get such an upper hand of me, that it requires a strong "
+		      + "moral principle to prevent me from deliberately stepping into "
+		      + "the street, and methodically knocking people's hats off-then, "
+		      + "I account it high time to get to sea as soon as I can."
 };
 
 ////////
 //Main function
 //Output will be reflected via console.log function
 function process(req_parameters, callback) {
-	var AlchemyAPI = require('alchemy-api');
 
-	var alchemy = new AlchemyAPI(req_parameters.api_key);
 	var watson = require('watson-developer-cloud');
-	// Personality Insights using Watson Lib
-	var out = {};
-	alchemy.text(req_parameters.url, {}, function(err, response) {
-		if (err) {
-			console.log('error: ' + err);
-			if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
-			return;
-		}
-		
-		var personality_insights = watson.personality_insights({
-			username: req_parameters.username,
-			password: req_parameters.password,
-			version: 'v2'
+	
+	var personality_insights = watson.personality_insights({
+		  username: req_parameters.username, // SET YOUR USERNAME
+		  password: req_parameters.password, // SET YOUR PASSWORD
+		  version: 'v2'
 		});
-
-		personality_insights.profile({text: response.text, language: 'en'},
-			function (err, response) {
-				if (err) {
-					console.log('error: ' + err);
-					if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
-					return;
-				} else {
-					console.log(JSON.stringify(response, null, 2));
-					if (typeof callback !== 'undefined' && typeof callback=="function") return callback(response);
-				}
+	
+	// Personality Insights using Watson Lib
+	personality_insights.profile({
+		  text: req_parameters.text},
+		  function (err, response) {
+			    if (err)
+			      console.log('error:', err);
+			    else
+			      console.log(JSON.stringify(response, null, 2));
 			}
-		);
-	});
+	);
 }
 
 //Allows Execution of this process

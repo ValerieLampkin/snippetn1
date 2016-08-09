@@ -1,49 +1,34 @@
 //Predefined parameters
 //which may contain api_key, username, password 
 var parameters = {
-		"api_key" : "913f155354acfc4810935b58249e5edefa63f9ba",
+		"username" : "",
+		"password" : "",
 		"url" : "https://simple.wikipedia.org/wiki/Barack_Obama"
 };
 
 //Main function
 //Output will be reflected via console.log function
 function process(req_parameters, callback) {
-	var AlchemyAPI = require('alchemy-api');
+	var watson = require('watson-developer-cloud');
 
-	var alchemy = new AlchemyAPI(req_parameters.api_key);
+	var concept_insights = watson.concept_insights({
+	  username: req_parameters.username, // SET YOUR USERNAME
+	  password: req_parameters.password, // SET YOUR PASSWORD
+	  version: 'v2'
+	});
+	var params = {
+	  graph: '/graphs/wikipedia/en-20120601',
+	  text: 'IBM Watson won the Jeopardy television show hosted by Alex Trebek'
+	};
 
-	// Sentiment , Entities, Relations using Alchemy Lib
-	var out = {};
-	alchemy.sentiment(req_parameters.url, {}, function(err, response) {
-		if (err) {
-			console.log('error: ' + err);
-			if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
-			return;
-		}
-		out.sentiment = response.docSentiment;
-
-		alchemy.entities(req_parameters.url, {}, function(err, response) {
-			if (err) {
-				console.log('error: ' + err);
-				if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
-				return;
-			}
-			out.entities = response.entities;
-
-			alchemy.relations(req_parameters.url, {}, function(err, response) {
-				if (err) {
-					console.log('error: ' + err);
-					if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
-					return;
-				}
-				out.relations = response.relations;
-
-				console.log(JSON.stringify(out, null, 2));
-				if (typeof callback !== 'undefined' && typeof callback=="function") return callback(response);
-			});
-
-		});
-
+	// Retrieve the concepts for input text
+	concept_insights.graphs.annotateText(params, function(err, res) {
+	  if (err)
+	    console.log(err);
+	  else {
+	    console.log('Annotated Text');
+	    console.log(JSON.stringify(res, null, 2));
+	  }
 	});
 }
 
