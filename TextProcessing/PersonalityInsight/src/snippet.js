@@ -18,7 +18,7 @@ var parameters = {
 		      + "I account it high time to get to sea as soon as I can."
 };
 
-////////
+
 //Main function
 //Output will be reflected via console.log function
 function process(req_parameters, callback) {
