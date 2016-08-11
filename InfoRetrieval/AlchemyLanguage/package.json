@@ -1,5 +1,5 @@
 {
-  "name": "AlchemyConcepts",
+  "name": "NodeAlchemyLanguage",
   "version": "0.0.1",
 
   "dependencies": {
@@ -12,6 +12,7 @@
 
 	"cf-deployment-tracker-client": "*",
 
-    "alchemy-api": "*"
+    "alchemy-api": "*",
+    "watson-developer-cloud" : "*"    
   }
 }

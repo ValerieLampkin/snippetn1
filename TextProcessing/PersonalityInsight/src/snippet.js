@@ -35,10 +35,14 @@ function process(req_parameters, callback) {
 	personality_insights.profile({
 		  text: req_parameters.text},
 		  function (err, response) {
-			    if (err)
+			    if (err) {
 			      console.log('error:', err);
-			    else
+			      if (typeof callback !== 'undefined' && typeof callback=="function") return callback(err);
+			    }
+			    else {
 			      console.log(JSON.stringify(response, null, 2));
+					if (typeof callback !== 'undefined' && typeof callback=="function") return callback(response);
+			    }
 			}
 	);
 }
