@@ -14,5 +14,9 @@
 
     "alchemy-api": "*",
     "watson-developer-cloud" : "*"    
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibmecod/snippetn1/tree/master/InfoRetrieval/Dialog"
   }
 }
