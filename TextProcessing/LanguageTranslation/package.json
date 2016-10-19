@@ -9,10 +9,12 @@
     "path": "*",
     "dynamic-routes": "*",
     "forms": "*",
-
-	"cf-deployment-tracker-client": "*",
-
+    "cf-deployment-tracker-client": "*",
     "alchemy-api": "*",
     "watson-developer-cloud" : "*"    
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibmecod/snippetn1/tree/master/TextProcessing/LanguageTranslation"
   }
 }
