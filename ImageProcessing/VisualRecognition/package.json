@@ -13,7 +13,8 @@
 	"cf-deployment-tracker-client": "*",
 
     "alchemy-api": "*",
-    "watson-developer-cloud" : "*"    
+    "watson-developer-cloud" : "*",
+    "sandbox-superglue" : "*"    
   },
   "repository": {
     "type": "git",
